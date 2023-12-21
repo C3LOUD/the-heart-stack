@@ -1,6 +1,7 @@
 package main
 
 import (
+	"github.com/C3LOUD/the-heart-stack/db"
 	"github.com/C3LOUD/the-heart-stack/handler"
 	"github.com/labstack/echo/v4"
 	"github.com/labstack/echo/v4/middleware"
@@ -8,6 +9,8 @@ import (
 
 func main() {
 	e := echo.New()
+	db.Conn()
+	defer db.Close()
 
 	e.Use(middleware.Logger())
 	e.Use(middleware.Recover())

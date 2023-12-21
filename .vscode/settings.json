@@ -8,5 +8,11 @@
   },
   "tailwindCSS.includeLanguages": {
     "templ": "html"
-  }
+  },
+  "[sql]": {
+    "editor.defaultFormatter": "adpyke.vscode-sql-formatter"
+  },
+  // "sqlfluff.executablePath": "/opt/homebrew/bin/sqlfluff",
+  // "sqlfluff.dialect": "sqlite",
+  "sql-formatter.uppercase": true
 }
