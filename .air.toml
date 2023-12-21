@@ -1,12 +1,12 @@
 root = "."
-tmp_dir = "tmp"
+tmp_dir = "bin"
 
 [build]
   args_bin = []
-  bin = "tmp/main.exe"
-  cmd = "templ generate && go build -o ./tmp/main.exe ./cmd/the-heart-stack"
+  bin = "bin/main.exe"
+  cmd = "templ generate && go build -o ./bin/main.exe ./cmd/the-heart-stack"
   delay = 1000
-  exclude_dir = ["assets", "tmp", "vendor"]
+  exclude_dir = ["assets", "bin", "vendor"]
   exclude_file = []
   exclude_regex = ["_test.go", "_templ.go"]
   exclude_unchanged = false

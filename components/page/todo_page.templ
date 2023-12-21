@@ -1,0 +1,24 @@
+package page
+
+import (
+	"github.com/C3LOUD/the-heart-stack/db"
+	"github.com/C3LOUD/the-heart-stack/components/layout"
+)
+
+templ TodoPage (todos []db.Todo) {
+	@layout.Base() {
+		<section>
+			<h1>Todo Page📝</h1>
+			if len(todos) == 0 {
+				<p>Empty</p>
+			} else {
+				<ol>
+					for _, todo := range todos {
+						return 
+						<li>{ todo.Content }</li>
+					}
+				</ol>
+			}
+		</section>
+	}
+}
