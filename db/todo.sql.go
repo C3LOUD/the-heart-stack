@@ -101,6 +101,20 @@ func (q *Queries) GetTodos(ctx context.Context) ([]Todo, error) {
 	return items, nil
 }
 
+const getUnfinishedTodoCount = `-- name: GetUnfinishedTodoCount :one
+SELECT
+  count(*)
+FROM
+  todo
+`
+
+func (q *Queries) GetUnfinishedTodoCount(ctx context.Context) (int64, error) {
+	row := q.db.QueryRowContext(ctx, getUnfinishedTodoCount)
+	var count int64
+	err := row.Scan(&count)
+	return count, err
+}
+
 const toggleTodo = `-- name: ToggleTodo :exec
 UPDATE
   todo

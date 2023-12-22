@@ -15,3 +15,18 @@ func GetTodos(c echo.Context) ([]db.Todo, error) {
 
 	return todos, err
 }
+
+func CreateTodo(c echo.Context, content string) (db.Todo, error) {
+	todo, err := db.UseQuery().CreateTodo(c.Request().Context(), content)
+	if err != nil {
+		return db.Todo{}, err
+	}
+	return todo, nil
+}
+
+func DeleteTodo(c echo.Context, id int64) error {
+	if err := db.UseQuery().DeleteTodo(c.Request().Context(), id); err != nil {
+		return err
+	}
+	return nil
+}

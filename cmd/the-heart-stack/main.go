@@ -19,7 +19,12 @@ func main() {
 	e.GET("/", indexHandler.HandleIndex)
 
 	todoHandler := handler.TodoHandler{}
-	e.GET("/todos", todoHandler.HandleListTodos)
+	e.GET("/todos", todoHandler.HandleTodoPage)
+	e.POST("/todos", todoHandler.HandleCreateTodo)
+	e.PATCH("/todos/:id", todoHandler.HandleFinishTodo)
+	e.DELETE("/todos/:id", todoHandler.HandleDeleteTodo)
+	e.DELETE("/todos/:id/confirm", todoHandler.HandleConfirmDeleteTodo)
+	e.GET("/todo-list", todoHandler.HandleListTodos)
 
 	e.Start(":3000")
 }

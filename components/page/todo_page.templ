@@ -1,24 +1,30 @@
 package page
 
 import (
-	"github.com/C3LOUD/the-heart-stack/db"
 	"github.com/C3LOUD/the-heart-stack/components/layout"
 )
 
-templ TodoPage (todos []db.Todo) {
+script CleanUpInput() {
+  $("#todo-submit-btn").on("htmx:afterRequest", function() {
+    $("#todo-input").val("")
+  })
+}
+
+templ TodoPage () {
 	@layout.Base() {
-		<section>
-			<h1>Todo Page📝</h1>
-			if len(todos) == 0 {
-				<p>Empty</p>
-			} else {
-				<ol>
-					for _, todo := range todos {
-						return 
-						<li>{ todo.Content }</li>
-					}
-				</ol>
-			}
+		<section class="mx-auto py-20 max-w-[50dvw]" hx-trigger="load" hx-get="/todo-list" hx-swap="afterend" hx-target="#todo-input-bar">
+			<h1 class="text-2xl">Heart Todo📝</h1>
+			<div id="todo-input-bar" class="flex">
+				<input type="text" name="todo" id="todo-input"/>
+				<button id="todo-submit-btn" hx-post="/todos" hx-target="#todo-list" hx-include="#todo-input" hx-swap="afterbegin">
+					<ion-icon name="add-circle" class="text-2xl"></ion-icon>
+				</button>
+			</div>
+			<div class="border border-black w-full h-px my-5"></div>
+			<div>
+				<h1>Finished Todos</h1>
+			</div>
+			@CleanUpInput()
 		</section>
 	}
 }

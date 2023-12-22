@@ -1,0 +1,10 @@
+package ui
+
+import "fmt"
+
+templ ExpandedButton (id string) {
+	<button class="animate__animated animate__slideInLeft" hx-delete={ fmt.Sprintf("/todos/%v", id) } hx-include="closest li" hx-target="closest li" hx-swap="outerHTML">
+		<ion-icon name="trash"></ion-icon>
+		<span>Are you sure?</span>
+	</button>
+}

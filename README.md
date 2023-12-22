@@ -7,11 +7,11 @@
 [Htmx](https://htmx.org/), [Echo](https://echo.labstack.com/), [Air](https://github.com/cosmtrek/air), [Redis](https://redis.io/), [Templ](https://templ.guide/)
 
 Also leveraging:
+
 - [Tailwindcss](https://tailwindcss.com/)
 - [Goose](https://pressly.github.io/goose/)
 - [Sqlite](https://www.sqlite.org/index.html)
 - [Sqlc](https://docs.sqlc.dev/en/stable/index.html#)
-- [Sqlfluff](https://docs.sqlfluff.com/en/stable/index.html)
 
 ---
 
@@ -21,7 +21,7 @@ In contemporary frontend development, managing data synchronization between the 
 
 Another pain point is the redundant validation of data on the client side, even when the server has already performed permission validation. The HEART Stack encourages developers to streamline this process by responding only with data that the requesting client has the privilege to access. This approach eliminates the need to duplicate validation efforts on both the client and server sides.
 
-Most importantly, Javascript suck, don't write it. 
+Most importantly, Javascript suck, don't write it.
 
 ---
 

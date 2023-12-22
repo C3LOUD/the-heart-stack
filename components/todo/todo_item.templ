@@ -1,0 +1,25 @@
+package todo
+
+import (
+	"github.com/C3LOUD/the-heart-stack/db"
+	"strconv"
+	"fmt"
+)
+
+script Animation(id string) {
+  $(`#todo-${id}>button`).on("htmx:afterRequest", function() {
+    $(`#todo-${id}>span`).addClass("animate__animated animate__slideInLeft")
+  })
+}
+
+templ TodoItem (t db.Todo) {
+	<p id="empty-string" hx-swap-oob="true"></p>
+	<li class="flex items-center gap-2" id={ "todo-" + strconv.FormatInt(t.ID, 10) }>
+		<input type="checkbox" hx-trigger="change" hx-patch={ fmt.Sprintf("/todos/%v", strconv.FormatInt(t.ID, 10)) }/>
+		<button hx-delete={ fmt.Sprintf("/todos/%v/confirm", strconv.FormatInt(t.ID, 10)) } hx-swap="outerHTML" hx-target="this">
+			<ion-icon name="trash"></ion-icon>
+		</button>
+		<span>{ t.Content }</span>
+		@Animation(strconv.FormatInt(t.ID, 10))
+	</li>
+}

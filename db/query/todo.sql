@@ -34,4 +34,10 @@ WHERE
 DELETE FROM
   todo
 WHERE
-  id = ?
+  id = ?;
+
+-- name: GetUnfinishedTodoCount :one
+SELECT
+  count(*)
+FROM
+  todo;

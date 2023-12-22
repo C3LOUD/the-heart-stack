@@ -12,7 +12,11 @@
   "[sql]": {
     "editor.defaultFormatter": "adpyke.vscode-sql-formatter"
   },
-  // "sqlfluff.executablePath": "/opt/homebrew/bin/sqlfluff",
-  // "sqlfluff.dialect": "sqlite",
-  "sql-formatter.uppercase": true
+  "sql-formatter.uppercase": true,
+  "search.exclude": {
+    "**/node_modules": true,
+    "**/bower_components": true,
+    "**/*.code-search": true,
+    "**/*_templ.go": true
+  }
 }
