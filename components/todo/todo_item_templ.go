@@ -18,12 +18,13 @@ import (
 
 func Animation(id string) templ.ComponentScript {
 	return templ.ComponentScript{
-		Name: `__templ_Animation_111a`,
-		Function: `function __templ_Animation_111a(id){$(` + "`" + `#todo-${id}>button` + "`" + `).on("htmx:afterRequest", function() {
-    $(` + "`" + `#todo-${id}>span` + "`" + `).addClass("animate__animated animate__slideInLeft")
+		Name: `__templ_Animation_83ae`,
+		Function: `function __templ_Animation_83ae(id){htmx.on(` + "`" + `#todo-${id}>button` + "`" + `,"htmx:afterRequest", function() {
+    htmx.addClass(` + "`" + `#todo-${id}>span` + "`" + `, "animate__animated")
+    htmx.addClass(` + "`" + `#todo-${id}>span` + "`" + `, "animate__slideInLeft")
   })}`,
-		Call:       templ.SafeScript(`__templ_Animation_111a`, id),
-		CallInline: templ.SafeScriptInline(`__templ_Animation_111a`, id),
+		Call:       templ.SafeScript(`__templ_Animation_83ae`, id),
+		CallInline: templ.SafeScriptInline(`__templ_Animation_83ae`, id),
 	}
 }
 

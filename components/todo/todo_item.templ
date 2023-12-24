@@ -7,8 +7,9 @@ import (
 )
 
 script Animation(id string) {
-  $(`#todo-${id}>button`).on("htmx:afterRequest", function() {
-    $(`#todo-${id}>span`).addClass("animate__animated animate__slideInLeft")
+  htmx.on(`#todo-${id}>button`,"htmx:afterRequest", function() {
+    htmx.addClass(`#todo-${id}>span`, "animate__animated")
+    htmx.addClass(`#todo-${id}>span`, "animate__slideInLeft")
   })
 }
 

@@ -5,8 +5,8 @@ import (
 )
 
 script CleanUpInput() {
-  $("#todo-submit-btn").on("htmx:afterRequest", function() {
-    $("#todo-input").val("")
+  htmx.on("#todo-submit-btn","htmx:afterRequest", function() {
+    htmx.find("#todo-input").value = ""
   })
 }
 

@@ -16,12 +16,12 @@ import (
 
 func CleanUpInput() templ.ComponentScript {
 	return templ.ComponentScript{
-		Name: `__templ_CleanUpInput_e6e7`,
-		Function: `function __templ_CleanUpInput_e6e7(){$("#todo-submit-btn").on("htmx:afterRequest", function() {
-    $("#todo-input").val("")
+		Name: `__templ_CleanUpInput_2b60`,
+		Function: `function __templ_CleanUpInput_2b60(){htmx.on("#todo-submit-btn","htmx:afterRequest", function() {
+    htmx.find("#todo-input").value = ""
   })}`,
-		Call:       templ.SafeScript(`__templ_CleanUpInput_e6e7`),
-		CallInline: templ.SafeScriptInline(`__templ_CleanUpInput_e6e7`),
+		Call:       templ.SafeScript(`__templ_CleanUpInput_2b60`),
+		CallInline: templ.SafeScriptInline(`__templ_CleanUpInput_2b60`),
 	}
 }
 
