@@ -44,7 +44,7 @@ func TodoPage() templ.Component {
 				templ_7745c5c3_Buffer = templ.GetBuffer()
 				defer templ.ReleaseBuffer(templ_7745c5c3_Buffer)
 			}
-			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<section class=\"mx-auto py-20 max-w-[50dvw]\" hx-trigger=\"load\" hx-get=\"/todo-list\" hx-swap=\"afterend\" hx-target=\"#todo-input-bar\"><h1 class=\"text-2xl\">")
+			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<section class=\"mx-auto py-20 max-w-[50dvw]\" hx-trigger=\"load, rsync from:body\" hx-get=\"/todo-list\" hx-swap=\"innerHTML\" hx-target=\"#todo-list\" hx-boost=\"true\"><h1 class=\"text-2xl\">")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
@@ -53,16 +53,7 @@ func TodoPage() templ.Component {
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
-			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("</h1><div id=\"todo-input-bar\" class=\"flex\"><input type=\"text\" name=\"todo\" id=\"todo-input\"> <button id=\"todo-submit-btn\" hx-post=\"/todos\" hx-target=\"#todo-list\" hx-include=\"#todo-input\" hx-swap=\"afterbegin\"><ion-icon name=\"add-circle\" class=\"text-2xl\"></ion-icon></button></div><div class=\"border border-black w-full h-px my-5\"></div><div><h1>")
-			if templ_7745c5c3_Err != nil {
-				return templ_7745c5c3_Err
-			}
-			templ_7745c5c3_Var4 := `Finished Todos`
-			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ_7745c5c3_Var4)
-			if templ_7745c5c3_Err != nil {
-				return templ_7745c5c3_Err
-			}
-			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("</h1></div>")
+			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("</h1><div class=\"flex\"><input type=\"text\" name=\"todo\" id=\"todo-input\"> <button id=\"todo-submit-btn\" hx-post=\"/todos\" hx-target=\"#todo-list\" hx-include=\"#todo-input\" hx-swap=\"afterbegin\"><ion-icon name=\"add-circle\" class=\"text-2xl\"></ion-icon></button></div><ol id=\"todo-list\"></ol>")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}

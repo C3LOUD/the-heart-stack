@@ -14,9 +14,8 @@ script Animation(id string) {
 }
 
 templ TodoItem (t db.Todo) {
-	<p id="empty-string" hx-swap-oob="true"></p>
 	<li class="flex items-center gap-2" id={ "todo-" + strconv.FormatInt(t.ID, 10) }>
-		<input type="checkbox" hx-trigger="change" hx-patch={ fmt.Sprintf("/todos/%v", strconv.FormatInt(t.ID, 10)) }/>
+		<input type="checkbox" hx-trigger="change" hx-target="this" hx-patch={ fmt.Sprintf("/todos/%v", strconv.FormatInt(t.ID, 10)) }/>
 		<button hx-delete={ fmt.Sprintf("/todos/%v/confirm", strconv.FormatInt(t.ID, 10)) } hx-swap="outerHTML" hx-target="this">
 			<ion-icon name="trash"></ion-icon>
 		</button>

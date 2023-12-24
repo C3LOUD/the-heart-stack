@@ -6,9 +6,7 @@ templ TodoList (todos []db.Todo) {
 	if len(todos) == 0 {
 		<p id="empty-string">Empty</p>
 	}
-	<ol id="todo-list">
-		for _, todo := range todos {
-			@TodoItem(todo)
-		}
-	</ol>
+	for _, todo := range todos {
+		@TodoItem(todo)
+	}
 }

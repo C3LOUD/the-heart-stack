@@ -2,7 +2,6 @@ package handler
 
 import (
 	"database/sql"
-	"fmt"
 	"net/http"
 	"strconv"
 
@@ -17,6 +16,10 @@ import (
 
 type TodoHandler struct{}
 
+type ResponseMessage struct {
+	Message string `json:"message" xml:"message"`
+}
+
 func (h TodoHandler) HandleListTodos(c echo.Context) error {
 	todos, err := todo.GetTodos(c)
 	if err != nil {
@@ -30,11 +33,16 @@ func (h TodoHandler) HandleTodoPage(c echo.Context) error {
 }
 
 func (h TodoHandler) HandleCreateTodo(c echo.Context) error {
-	todo, err := todo.CreateTodo(c, c.Request().FormValue("todo"))
+	_, err := todo.CreateTodo(c, c.Request().FormValue("todo"))
 	if err != nil {
 		return echo.NewHTTPError(http.StatusInternalServerError)
 	}
-	return util.Render(c, t.TodoItem(todo))
+
+	c.Response().Header().Set("HX-Trigger", "rsync")
+	return c.JSON(http.StatusOK, ResponseMessage{
+		Message: "Todo Updated",
+	},
+	)
 }
 
 func (h TodoHandler) HandleConfirmDeleteTodo(c echo.Context) error {
@@ -50,18 +58,11 @@ func (h TodoHandler) HandleDeleteTodo(c echo.Context) error {
 		return echo.NewHTTPError(http.StatusInternalServerError)
 	}
 
-	count, err := db.UseQuery().GetUnfinishedTodoCount(c.Request().Context())
-	if err != nil {
-		return echo.NewHTTPError(http.StatusInternalServerError)
-	}
-
-	hasUnfinishedTodo := false
-
-	if count > 0 {
-		hasUnfinishedTodo = true
-	}
-
-	return util.Render(c, ui.Empty(hasUnfinishedTodo))
+	c.Response().Header().Set("HX-Trigger", "rsync")
+	return c.JSON(http.StatusOK, ResponseMessage{
+		Message: "Todo Updated",
+	},
+	)
 }
 
 func (h TodoHandler) HandleFinishTodo(c echo.Context) error {
@@ -75,12 +76,14 @@ func (h TodoHandler) HandleFinishTodo(c echo.Context) error {
 		ID:         id,
 	}
 
-	// err = db.UseQuery().ToggleTodo(c.Request().Context(), args)
-	// if err != nil {
-	// 	return echo.NewHTTPError(http.StatusInternalServerError)
-	// }
+	err = db.UseQuery().ToggleTodo(c.Request().Context(), args)
+	if err != nil {
+		return echo.NewHTTPError(http.StatusInternalServerError)
+	}
 
-	fmt.Println(args)
-
-	return nil
+	c.Response().Header().Set("HX-Trigger", "rsync")
+	return c.JSON(http.StatusOK, ResponseMessage{
+		Message: "Todo Updated",
+	},
+	)
 }
