@@ -1,9 +1,25 @@
 package ui
 
-import "fmt"
-
 templ ExpandedButton (id string) {
-	<button class="animate__animated animate__slideInLeft" hx-delete={ fmt.Sprintf("/todos/%v", id) } hx-include="closest li" hx-target="closest li" hx-swap="outerHTML">
+	<style type="text/css">
+@keyframes slideIn {
+    0% {
+        width: 0;
+        opacity: 0;
+    }
+    100% {
+        width: 100%;
+        opacity: 1;
+    }
+}
+
+.slide-in {
+    animation: slideIn 1s linear; 
+    transition: width 1s;
+}
+
+</style>
+	<button hx-delete="/todos/:id/confirm" hx-swap="outerHTML swap:1s" class="block slide-in text-nowrap">
 		<ion-icon name="trash"></ion-icon>
 		<span>Are you sure?</span>
 	</button>

@@ -16,18 +16,6 @@ import (
 	"strconv"
 )
 
-func Animation(id string) templ.ComponentScript {
-	return templ.ComponentScript{
-		Name: `__templ_Animation_83ae`,
-		Function: `function __templ_Animation_83ae(id){htmx.on(` + "`" + `#todo-${id}>button` + "`" + `,"htmx:afterRequest", function() {
-    htmx.addClass(` + "`" + `#todo-${id}>span` + "`" + `, "animate__animated")
-    htmx.addClass(` + "`" + `#todo-${id}>span` + "`" + `, "animate__slideInLeft")
-  })}`,
-		Call:       templ.SafeScript(`__templ_Animation_83ae`, id),
-		CallInline: templ.SafeScriptInline(`__templ_Animation_83ae`, id),
-	}
-}
-
 func TodoItem(t db.Todo) templ.Component {
 	return templ.ComponentFunc(func(ctx context.Context, templ_7745c5c3_W io.Writer) (templ_7745c5c3_Err error) {
 		templ_7745c5c3_Buffer, templ_7745c5c3_IsBuffer := templ_7745c5c3_W.(*bytes.Buffer)
@@ -41,7 +29,7 @@ func TodoItem(t db.Todo) templ.Component {
 			templ_7745c5c3_Var1 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		var templ_7745c5c3_Var2 = []any{"flex items-center gap-2", templ.KV("line-through", t.IsFinished.Bool)}
+		var templ_7745c5c3_Var2 = []any{"flex items-center w-fit gap-2", templ.KV("line-through", t.IsFinished.Bool)}
 		templ_7745c5c3_Err = templ.RenderCSSItems(ctx, templ_7745c5c3_Buffer, templ_7745c5c3_Var2...)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
@@ -114,15 +102,7 @@ func TodoItem(t db.Todo) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("</span>")
-		if templ_7745c5c3_Err != nil {
-			return templ_7745c5c3_Err
-		}
-		templ_7745c5c3_Err = Animation(strconv.FormatInt(t.ID, 10)).Render(ctx, templ_7745c5c3_Buffer)
-		if templ_7745c5c3_Err != nil {
-			return templ_7745c5c3_Err
-		}
-		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("</li>")
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("</span></li>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
