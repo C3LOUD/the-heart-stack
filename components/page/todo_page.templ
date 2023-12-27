@@ -16,7 +16,7 @@ templ TodoPage () {
 			<h1 class="text-2xl">Heart Todo📝</h1>
 			<div class="flex">
 				<input type="text" name="todo" id="todo-input"/>
-				<button id="todo-submit-btn" hx-post="/todos" hx-target="#todo-list" hx-include="#todo-input" hx-swap="afterbegin">
+				<button id="todo-submit-btn" hx-post="/todos" hx-include="#todo-input">
 					<ion-icon name="add-circle" class="text-2xl"></ion-icon>
 				</button>
 			</div>

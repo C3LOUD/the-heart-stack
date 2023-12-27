@@ -12,6 +12,6 @@ templ TodoItem (t db.Todo) {
 		<button hx-delete={ fmt.Sprintf("/todos/%v/confirm", strconv.FormatInt(t.ID, 10)) } class={ templ.KV("hidden", t.IsFinished.Bool) } hx-swap="outerHTML" hx-target="this">
 			<ion-icon name="trash"></ion-icon>
 		</button>
-		<span>{ t.Content }</span>
+		<span class="text-nowrap">{ t.Content }</span>
 	</li>
 }

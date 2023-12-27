@@ -12,7 +12,7 @@ func main() {
 	db.Conn()
 	defer db.Close()
 
-	// e.Use(middleware.Logger())
+	e.Use(middleware.Logger())
 	e.Use(middleware.Recover())
 
 	indexHandler := handler.IndexHandler{}

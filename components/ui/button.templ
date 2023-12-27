@@ -19,7 +19,7 @@ templ ExpandedButton (id string) {
 }
 
 </style>
-	<button hx-delete="/todos/:id/confirm" hx-swap="outerHTML swap:1s" class="block slide-in text-nowrap">
+	<button hx-delete={ "/todos/" + id } class="block slide-in text-nowrap">
 		<ion-icon name="trash"></ion-icon>
 		<span>Are you sure?</span>
 	</button>

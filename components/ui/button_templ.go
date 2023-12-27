@@ -49,7 +49,15 @@ func ExpandedButton(id string) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("</style><button hx-delete=\"/todos/:id/confirm\" hx-swap=\"outerHTML swap:1s\" class=\"block slide-in text-nowrap\"><ion-icon name=\"trash\"></ion-icon> <span>")
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("</style><button hx-delete=\"")
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString("/todos/" + id))
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("\" class=\"block slide-in text-nowrap\"><ion-icon name=\"trash\"></ion-icon> <span>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}

@@ -53,7 +53,7 @@ func TodoPage() templ.Component {
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
-			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("</h1><div class=\"flex\"><input type=\"text\" name=\"todo\" id=\"todo-input\"> <button id=\"todo-submit-btn\" hx-post=\"/todos\" hx-target=\"#todo-list\" hx-include=\"#todo-input\" hx-swap=\"afterbegin\"><ion-icon name=\"add-circle\" class=\"text-2xl\"></ion-icon></button></div><ol id=\"todo-list\"></ol>")
+			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("</h1><div class=\"flex\"><input type=\"text\" name=\"todo\" id=\"todo-input\"> <button id=\"todo-submit-btn\" hx-post=\"/todos\" hx-include=\"#todo-input\"><ion-icon name=\"add-circle\" class=\"text-2xl\"></ion-icon></button></div><ol id=\"todo-list\"></ol>")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}

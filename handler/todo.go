@@ -39,10 +39,7 @@ func (h TodoHandler) HandleCreateTodo(c echo.Context) error {
 	}
 
 	c.Response().Header().Set("HX-Trigger", "rsync")
-	return c.JSON(http.StatusOK, ResponseMessage{
-		Message: "Todo Updated",
-	},
-	)
+	return c.NoContent(http.StatusOK)
 }
 
 func (h TodoHandler) HandleConfirmDeleteTodo(c echo.Context) error {
@@ -54,15 +51,13 @@ func (h TodoHandler) HandleDeleteTodo(c echo.Context) error {
 	if err != nil {
 		return echo.NewHTTPError(http.StatusInternalServerError)
 	}
+
 	if err := todo.DeleteTodo(c, id); err != nil {
 		return echo.NewHTTPError(http.StatusInternalServerError)
 	}
 
 	c.Response().Header().Set("HX-Trigger", "rsync")
-	return c.JSON(http.StatusOK, ResponseMessage{
-		Message: "Todo Updated",
-	},
-	)
+	return c.NoContent(http.StatusOK)
 }
 
 func (h TodoHandler) HandleFinishTodo(c echo.Context) error {
@@ -82,8 +77,5 @@ func (h TodoHandler) HandleFinishTodo(c echo.Context) error {
 	}
 
 	c.Response().Header().Set("HX-Trigger", "rsync")
-	return c.JSON(http.StatusOK, ResponseMessage{
-		Message: "Todo Updated",
-	},
-	)
+	return c.NoContent(http.StatusOK)
 }
