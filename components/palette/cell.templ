@@ -1,0 +1,7 @@
+package palette
+
+import "fmt"
+
+templ Cell(hex string) {
+	<div class={ fmt.Sprintf(`w-10 h-10 bg-[%v]`, hex) }></div>
+}

@@ -10,9 +10,12 @@ import "context"
 import "io"
 import "bytes"
 
-import "github.com/C3LOUD/the-heart-stack/components/layout"
+import (
+	"github.com/C3LOUD/the-heart-stack/components/layout"
+	"github.com/C3LOUD/the-heart-stack/components/palette"
+)
 
-func Index() templ.Component {
+func Index(hex string) templ.Component {
 	return templ.ComponentFunc(func(ctx context.Context, templ_7745c5c3_W io.Writer) (templ_7745c5c3_Err error) {
 		templ_7745c5c3_Buffer, templ_7745c5c3_IsBuffer := templ_7745c5c3_W.(*bytes.Buffer)
 		if !templ_7745c5c3_IsBuffer {
@@ -31,25 +34,26 @@ func Index() templ.Component {
 				templ_7745c5c3_Buffer = templ.GetBuffer()
 				defer templ.ReleaseBuffer(templ_7745c5c3_Buffer)
 			}
-			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<div class=\"pt-12\"><span class=\"text-6xl\">")
+			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<section class=\"pt-12\"><h1>")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
-			templ_7745c5c3_Var3 := `Welcome to HEAT Stack `
+			templ_7745c5c3_Var3 := `Heart Color`
 			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ_7745c5c3_Var3)
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
-			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<span class=\"text-red-500\">")
+			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("</h1><div class=\"grid grid-cols-5 grid-rows-2 gap-4\" id=\"color-grid\">")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
-			templ_7745c5c3_Var4 := `♥`
-			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ_7745c5c3_Var4)
-			if templ_7745c5c3_Err != nil {
-				return templ_7745c5c3_Err
+			for i := 0; i < 10; i++ {
+				templ_7745c5c3_Err = palette.Cell(hex).Render(ctx, templ_7745c5c3_Buffer)
+				if templ_7745c5c3_Err != nil {
+					return templ_7745c5c3_Err
+				}
 			}
-			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("</span></span></div>")
+			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("</div></section>")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}

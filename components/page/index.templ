@@ -1,11 +1,19 @@
 package page
 
-import "github.com/C3LOUD/the-heart-stack/components/layout"
+import (
+	"github.com/C3LOUD/the-heart-stack/components/layout"
+	"github.com/C3LOUD/the-heart-stack/components/palette"
+)
 
-templ Index() {
+templ Index(hex string) {
 	@layout.Base() {
-		<div class="pt-12">
-			<span class="text-6xl">Welcome to HEAT Stack <span class="text-red-500">♥</span></span>
-		</div>
+		<section class="pt-12">
+			<h1>Heart Color</h1>
+			<div class="grid grid-cols-5 grid-rows-2 gap-4" id="color-grid">
+				for i := 0; i < 10; i++ {
+					@palette.Cell(hex)
+				}
+			</div>
+		</section>
 	}
 }
